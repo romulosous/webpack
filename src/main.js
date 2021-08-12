@@ -1,10 +1,43 @@
-// import * as calculator from './calculator'
-import { subtraction, sum } from './calculator'
+const myPromisse = () =>
+  new Promise((resolve, reject) => {
+    return setTimeout(() => {
+      // resolve('ok')
+      reject('deu ruim')
+    }, 2000)
+  })
 
-import div, { multiplication } from './division'
+//es2017 / es8 / async/await
 
-console.log(subtraction(10, 3))
-console.log(sum(10, 3))
+// myPromisse()
+//   .then(response => {
+//     console.log('Primeira vez')
+//     myPromisse().then(response => {
+//       console.log('Segunda vez')
+//       myPromisse().then(response => {
+//         console.log('terceira vez')
+//       })
+//     })
+//   })
+//   .catch(error => {
+//     console.warn(error)
+//   })
 
-console.log(div(5, 5))
-console.log(multiplication(5, 2))
+const exec = async () => {
+  try {
+    loading = true
+    await myPromisse()
+    console.log('Primeira vez')
+
+    await myPromisse()
+    console.log('Segunda vez')
+
+    await myPromisse()
+    console.log('Terceira vez')
+  } catch (error) {
+    console.warn(error)
+  } finally {
+    loading = false
+  }
+}
+
+exec()
